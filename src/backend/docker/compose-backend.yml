@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  backend:
+    container_name: backend
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile
+    environment:
+      spring.datasource.url: jdbc:postgresql://db/rastreio
+      spring.datasource.username: admin
+      spring.datasource.password: 123
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
