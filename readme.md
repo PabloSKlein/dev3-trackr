@@ -1,4 +1,4 @@
-# Rastr.io
+# 🚚 Trackr
 
 ## Desenvolvimento Backend
 
@@ -11,7 +11,7 @@
 | JDK 14         | https://www.oracle.com/java/technologies/javase/jdk14-archive-downloads.html |
 | GIT | https://git-scm.com/downloads |
 
-### Execução da infra estrutura 
+### Execução da infraestrutura 
 
 A infraestrutura para desenvolvimento pode ser gerenciada (inicializada, parada e excluída) usando o Docker. Para isto, navegue até a pasta `src/backend` e execute os comandos abaixo.:
 
