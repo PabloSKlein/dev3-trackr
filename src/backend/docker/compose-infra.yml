@@ -2,17 +2,17 @@ version: '3.8'
 
 services:
   db:
-    image: postgres
+    image: mcr.microsoft.com/mssql/server:2019-GA-ubuntu-16.04
     container_name: db
     restart: always
     environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: 123
-      POSTGRES_DB: rastreio
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=4Jgz2HmDKS
+      - MSSQL_PID=Developer
     ports:
-      - 5432:5432
+      - "5433:1433"
     volumes:
-      - db_volume:/var/lib/postgresql/data
+      - sqlserver_volume:/var/opt/mssql
 
   adminer:
     image: adminer
@@ -22,4 +22,4 @@ services:
       - 9000:8080
 
 volumes:
-  db_volume:
+  sqlserver_volume:
