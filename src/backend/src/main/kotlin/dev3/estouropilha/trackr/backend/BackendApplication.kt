@@ -1,4 +1,4 @@
-package dev3.estouropilha.rastreio.backend
+package dev3.estouropilha.trackr.backend
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

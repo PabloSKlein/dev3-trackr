@@ -1,4 +1,4 @@
-package dev3.estouropilha.rastreio.backend.model
+package dev3.estouropilha.trackr.backend.model
 
 import javax.persistence.Table
 import javax.persistence.Entity
@@ -8,9 +8,9 @@ import javax.persistence.Id
 
 @Entity
 @Table(name = "Pessoas")
-class Pessoa(
+data class Pessoa(
         val nome: String,
-        @Id @GeneratedValue(strategy = GenerationType.AUTO) val id: Int = -1
+        @Id @GeneratedValue(strategy = GenerationType.AUTO) val id: Int = 0
 ) {
     constructor(): this("")
 }

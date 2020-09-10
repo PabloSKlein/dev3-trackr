@@ -1,4 +1,4 @@
-package dev3.estouropilha.rastreio.backend.config
+package dev3.estouropilha.trackr.backend.config
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
