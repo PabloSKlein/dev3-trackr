@@ -1,0 +1,41 @@
+package dev3.estouropilha.trackr.backend.security
+
+import com.fasterxml.jackson.databind.ObjectMapper
+import dev3.estouropilha.trackr.backend.model.Credentials
+import dev3.estouropilha.trackr.backend.model.UserDetailsImpl
+import org.springframework.security.authentication.AuthenticationManager
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
+import org.springframework.security.core.Authentication
+import org.springframework.security.core.userdetails.UsernameNotFoundException
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
+import javax.servlet.FilterChain
+import javax.servlet.http.HttpServletRequest
+import javax.servlet.http.HttpServletResponse
+
+
+class JwtAuthenticationFilter: UsernamePasswordAuthenticationFilter {
+
+    private var jwtHelper: JwtHelper
+
+    constructor(authenticationManager: AuthenticationManager, jwtHelper: JwtHelper) : super() {
+        this.authenticationManager = authenticationManager
+        this.jwtHelper = jwtHelper
+    }
+
+    override fun attemptAuthentication(request: HttpServletRequest, response: HttpServletResponse?): Authentication? {
+        try {
+            val (email, password) = ObjectMapper().readValue(request.inputStream, Credentials::class.java)
+            return authenticationManager.authenticate(UsernamePasswordAuthenticationToken(email, password))
+        } catch (e: Exception) {
+            throw UsernameNotFoundException("User not found!")
+        }
+    }
+
+    override fun successfulAuthentication(request: HttpServletRequest?, response: HttpServletResponse, chain: FilterChain?, authResult: Authentication) {
+        val username = (authResult.principal as UserDetailsImpl).username
+        val token = jwtHelper.generateToken(username)
+        response.addHeader("Authorization", "Bearer $token")
+    }
+
+}
+

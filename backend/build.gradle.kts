@@ -16,15 +16,17 @@ repositories {
 }
 
 dependencies {
-	implementation("org.springframework.boot:spring-boot-starter")
-	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+	implementation("org.springframework.boot:spring-boot-starter:2.3.3.RELEASE")
+	implementation("org.springframework.boot:spring-boot-starter-web:2.3.3.RELEASE")
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa:2.3.3.RELEASE")
+	implementation("org.springframework.boot:spring-boot-starter-security:2.3.3.RELEASE")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("io.springfox:springfox-swagger2:2.7.0")
 	implementation("io.springfox:springfox-swagger-ui:2.7.0")
 	implementation("com.microsoft.sqlserver:mssql-jdbc")
 	implementation("com.h2database:h2:1.4.196")
+	implementation("io.jsonwebtoken:jjwt:0.6.0")
 	testImplementation("org.springframework.boot:spring-boot-starter-test") {
 		exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
 	}
