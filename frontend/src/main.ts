@@ -1,3 +1,7 @@
+
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap';
+import 'jquery';
 import Vue from 'vue'
 import App from './App.vue'
 
