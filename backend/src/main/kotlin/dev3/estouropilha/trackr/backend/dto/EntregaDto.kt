@@ -4,18 +4,13 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 
 data class EntregaDto (
-    val descricao: String,
-    val previsaoEntrega: LocalDate,
-    val remetente: String,
-    val destinatario: String,
-    val nomeTransportadora: String,
-    val movimentacoes: Iterable<MovimentacoesEntregaDto>
+    val movimentacoes: Iterable<MovimentacaoDto>
 )
 
-data class MovimentacoesEntregaDto (
+data class MovimentacaoDto (
     val dataHora: LocalDateTime,
     val local: String,
-    val situacao: SituacaoDto
+    val situacao: String
 )
 
 data class SituacaoDto (
