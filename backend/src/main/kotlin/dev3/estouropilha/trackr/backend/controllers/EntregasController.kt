@@ -1,31 +1,29 @@
 package dev3.estouropilha.trackr.backend.controllers
 
+import dev3.estouropilha.trackr.backend.crawlers.ssw.SswCrawler
 import dev3.estouropilha.trackr.backend.dto.EntregaDto
-import dev3.estouropilha.trackr.backend.dto.MovimentacoesEntregaDto
-import dev3.estouropilha.trackr.backend.dto.SituacaoDto
+import dev3.estouropilha.trackr.backend.dto.MovimentacaoDto
 import io.swagger.annotations.Api
 import io.swagger.annotations.ApiParam
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
-import org.springframework.http.ResponseEntity.badRequest
 import org.springframework.http.ResponseEntity.ok
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
-import org.springframework.web.client.HttpClientErrorException
 import org.springframework.web.server.ResponseStatusException
-import java.time.LocalDate
-import java.time.LocalDateTime
 import javax.validation.constraints.Pattern
-import javax.validation.constraints.Size
 
 @Api("Entregas")
 @RestController
 @RequestMapping("/entregas")
 @Validated
 class EntregasController {
+
+    private val sswCrawler = SswCrawler()
+
     @GetMapping("/{cpf}")
     fun consultarPorCpf(@PathVariable("cpf")
                         @Pattern(regexp = "^\\d{11}$")
@@ -37,10 +35,12 @@ class EntregasController {
             throw ResponseStatusException(HttpStatus.BAD_REQUEST, "CPF inválido")
         }
 
-        val entregas = listOf(
-            EntregaDto("Qualquer coisa", LocalDate.now(), "Joaquim", "Jéferson", "Correios",
-                listOf(MovimentacoesEntregaDto(LocalDateTime.now(), "Teste", SituacaoDto("Qualquer coisa", "Outra coisa"))))
-        )
+        val entregas = sswCrawler.consultarEntregas(cpf)
+                .map {
+                    EntregaDto(
+                            it.movimentacoes.map { m -> MovimentacaoDto(m.data, m.detalhes, m.unidade) }
+                    )
+                }
 
         return ok(entregas)
     }
