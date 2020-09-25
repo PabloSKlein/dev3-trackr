@@ -12,7 +12,7 @@ variables:
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: '875eaf54-c51b-42f4-beb9-af2b4f51a1c6'
   imageRepository: 'backend'
-  containerRegistry: 'dev3rastreio.azurecr.io'
+  containerRegistry: 'trackr.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/src/backend/docker/Dockerfile'
   tag: '$(Build.BuildId)'
   
