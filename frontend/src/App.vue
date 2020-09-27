@@ -1,6 +1,6 @@
 <template>
   <div id="main">
-    <NavBar nome="Track"></NavBar>
+    <NavBar nome="Trackr"></NavBar>
     <div class="container-fluid">
       <div class="row">
         <MenuBar></MenuBar>
@@ -23,12 +23,10 @@ export default Vue.extend({
 </script>
 
 <style>
-/* #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-} */
+body {
+  font-family: Arial, Helvetica, "Nimbus Sans L", sans-serif;
+  font-size: 13px;
+  line-height: 20px;
+  color: #333;
+}
 </style>
